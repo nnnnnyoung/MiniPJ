@@ -109,24 +109,47 @@ public class GameADM {
          }
       }
       
-      public void search() { // 단어검색 메서드
-         System.out.print("검색할 단어 : ");
-         String searchin = in.nextLine(); //
-         int chkPoint=0;
-         if(chk(searchin)==0) { //글자수 확인 메서드
-            for(int i = 0;i<a.length;i++) { 
-               if(a[i]!=null &&a[i].contains(searchin)) { //입력된 단어를 포함하는 단어가 있다면 출력한다
-                  System.out.println(a[i]);
-                  chkPoint=1;
-               }else if(chkPoint==0) { ////입력된 단어를 포함하는 단어가 없다면 일치하는 단어가 없다고 안내문이 출력된다
-                  System.out.println("일치하는 단어가 없습니다.");
-                  break;
-               }
-            }
-         }else {
-            System.out.println("8글자 이하로 입력하세요.");
-         }
-      }
+
+      
+      public void search() {
+          System.out.println("포함된 단어 검색 : 1");
+          System.out.println("일치하는 단어 검색 : 2");
+          int j = 0;
+          int sc = in.nextInt();
+          in.nextLine();
+          if(sc==1) {
+             System.out.print("검색할 단어 : ");
+             String searchin = in.nextLine();
+             if(chk(searchin)==0) {
+                for(int i = 0;i<a.length;i++) {
+                   if(a[i]!=null &&a[i].contains(searchin)) { //입력된 단어를 포함하는 단어가 있다면 출력한다
+                      j++;
+                      System.out.println(a[i]);
+                   }
+                   if(i==a.length-1&&j==0) {////입력된 단어를 포함하는 단어가 없다면 일치하는 단어가 없다고 안내문이 출력된다
+                      System.out.println("일치하는 단어가 없습니다.");
+                   }
+                }
+             }else {
+                System.out.println("8글자 이하로 입력하세요.");
+             }
+          }else if(sc==2) {
+             System.out.print("검색할 단어 : ");
+             String searchin = in.nextLine();
+             if(chk(searchin)==0) {
+                for(int i = 0;i<a.length;i++) {
+                   if(a[i]!=null &&a[i].contains(searchin)) {
+                      System.out.println(a[i]);
+                      break;
+                   }else if(i==a.length-1) {
+                      System.out.println("일치하는 단어가 없습니다.");
+                   }
+                }
+             }else {
+                System.out.println("8글자 이하로 입력하세요.");
+             }
+          }
+       }
       
       public void delete() {
          System.out.print("삭제할 단어 : "); 
